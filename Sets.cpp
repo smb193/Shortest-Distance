@@ -61,3 +61,8 @@ bool make_set(int points, int dim, std::string fname)
 		return false;
 	}
 }
+
+//sort PAIR vector    sort(vector.begin(), vector.end(), SortPair);
+bool SortPair(PAIR i, PAIR j) { return (std::get<0>(i) < std::get<0>(j)); }
+//sort TRIP vector    sort(vector.begin(), vector.end(), SortTRIP);
+bool SortTrip(TRIP i, TRIP j) { return (std::get<0>(i) < std::get<0>(j)); }
