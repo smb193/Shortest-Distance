@@ -10,6 +10,6 @@
 
 PAIR get_pair();
 TRIP get_trip();
-bool make_set(int points, int dim = 2);
+bool make_set(int points, int dim = 2, std::string fname = "");
 V_PAIR read_pairs(std::string fname);
 V_TRIP read_trips(std::string fname);

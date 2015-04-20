@@ -21,7 +21,7 @@ TRIP get_trip()
 	return std::make_tuple(first, second, third);
 }
 
-bool make_set(int points, int dim)
+bool make_set(int points, int dim, std::string fname)
 {
 	//Only supports 2D and 3D
 	if (!(dim == 2 || dim == 3))
@@ -29,9 +29,10 @@ bool make_set(int points, int dim)
 		std::cerr << "Invalid dimension\n";
 		return false;
 	}
-
-	//Save to set_(#pts).txt
-	std::string fname = "set_" + std::to_string(points) + ".txt";
+	//Save to set_(#pts).txt if not given.
+	if (fname.empty())
+		fname = "set_" + std::to_string(points);
+	fname += ".txt";
 	std::ofstream ofile(fname);
 	if (ofile.is_open())
 	{
