@@ -62,7 +62,45 @@ bool make_set(int points, int dim, std::string fname)
 	}
 }
 
+V_PAIR read_pairs(std::string fname)
+{
+	std::ifstream ifile(fname);
+	V_PAIR v;
+	if (ifile.is_open())
+	{
+		int first, second;
+		while (!ifile.eof())
+		{
+			ifile >> first >> second;
+			PAIR p(first, second);
+			v.push_back(p);
+		}
+	}
+	else
+		std::cerr << "Unable to open file.\n";
+	return v;
+}
+
+V_TRIP read_trips(std::string fname)
+{
+	std::ifstream ifile(fname);
+	V_TRIP v;
+	if (ifile.is_open())
+	{
+		int first, second, third;
+		while (!ifile.eof())
+		{
+			ifile >> first >> second >> third;
+			TRIP t(first, second, third);
+			v.push_back(t);
+		}
+	}
+	else
+		std::cerr << "Unable to open file.\n";
+	return v;
+}
+
 //sort PAIR vector    sort(vector.begin(), vector.end(), SortPair);
-bool SortPair(PAIR i, PAIR j) { return (std::get<0>(i) < std::get<0>(j)); }
+bool SortPair(PAIR i, PAIR j) { return (i.first < j.first); }
 //sort TRIP vector    sort(vector.begin(), vector.end(), SortTRIP);
 bool SortTrip(TRIP i, TRIP j) { return (std::get<0>(i) < std::get<0>(j)); }
