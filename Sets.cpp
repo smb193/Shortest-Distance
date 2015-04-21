@@ -75,6 +75,7 @@ V_PAIR read_pairs(std::string fname)
 			PAIR p(first, second);
 			v.push_back(p);
 		}
+		ifile.close();
 	}
 	else
 		std::cerr << "Unable to open file.\n";
@@ -94,6 +95,7 @@ V_TRIP read_trips(std::string fname)
 			TRIP t(first, second, third);
 			v.push_back(t);
 		}
+		ifile.close();
 	}
 	else
 		std::cerr << "Unable to open file.\n";
