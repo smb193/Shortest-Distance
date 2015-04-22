@@ -1,6 +1,6 @@
+#include "Distance.h"
 #include "Sets.h"
 #include <cassert>
-#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -26,6 +26,26 @@ int main(int argc, char* argv[])
 	{
 		V_TRIP v = read_trips("not_a_file.txt");
 		assert(v.empty());
+	}
+	{
+		PAIR p1(0, 0);
+		PAIR p2(0, 0);
+		assert(pt_distance(p1, p2) == 0);
+	}	
+	{
+		TRIP p1 = std::make_tuple(0, 0, 0);
+		TRIP p2 = std::make_tuple(0, 0, 0);
+		assert(pt_distance(p1, p2) == 0);
+	}
+	{
+		PAIR p1(0, 0);
+		PAIR p2(3, 4);
+		assert(pt_distance(p1, p2) == 5);
+	}
+	{
+		TRIP p1 = std::make_tuple(0, 0, 0);
+		TRIP p2 = std::make_tuple(1, 2, 2);
+		assert(pt_distance(p1, p2) == 3);
 	}
 	return 0;
 }

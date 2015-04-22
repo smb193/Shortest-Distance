@@ -1,6 +1,9 @@
+#ifndef SETS_H
+#define SETS_H
+
+#include <tuple>
 #include <utility>
 #include <vector>
-#include <tuple>
 
 #define PAIR std::pair<int, int>
 #define V_PAIR std::vector<PAIR>
@@ -17,3 +20,5 @@ V_TRIP read_trips(std::string fname);
 
 bool SortPair(PAIR, PAIR);
 bool SortTrip(TRIP, TRIP);
+
+#endif
