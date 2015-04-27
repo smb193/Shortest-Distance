@@ -18,33 +18,20 @@ int main(int argc, char* argv[])
 		
 		assert(!v.empty());
 		// sort/exhaust test
-		/*std::sort(v.begin(), v.end(), SortTrip);
-		for (int i = 0; i < v.size(); ++i)
-		{
-			std::cout << std::get<0>(v[i]) << "," << std::get<1>(v[i]) <<","<< std::get<2>(v[i]) << std::endl;
-		}
-		std::pair<TRIP, TRIP> closest = ClosePoints(v);
-		std::cout << "closest points:  " << std::get<0>(closest.first) << "," << std::get<1>(closest.first) <<
-			"," << std::get<2>(closest.first) << "   " << std::get<0>(closest.second) << "," << std::get<1>(closest.second) <<
-			"," << std::get<2>(closest.second)<<std::endl;
-		std::cout << "distance=" << pt_distance(closest.first, closest.second) << std::endl;*/
+		//std::sort(v.begin(), v.end(), SortTrip);
+		//display(v);
 	}
+	
 	{
 		
 		assert(make_set(10, 2, "assert_test"));
 		V_PAIR v = read_pairs("assert_test.txt");
 		assert(!v.empty());
 		// sort/exhaust test
-		/*std::sort(v.begin(), v.end(), SortPair);
-		for (int i = 0; i < v.size(); ++i)
-		{
-			std::cout << v[i].first << "," << v[i].second << std::endl;
-		}
-		std::pair<PAIR, PAIR> closest = ClosePoints(v);
-		std::cout << "closest points:  " << closest.first.first << "," << closest.first.second 
-				<< "   " << closest.second.first << "," << closest.second.second << std::endl;
-		std::cout << "distance=" << pt_distance(closest.first, closest.second)<<std::endl;*/
+		//std::sort(v.begin(), v.end(), SortPair);
+		//display(v);
 	}
+	
 	{
 		V_PAIR v = read_pairs("not_a_file.txt");
 		assert(v.empty());
