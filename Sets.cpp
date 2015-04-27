@@ -39,7 +39,7 @@ bool make_set(int points, int dim, std::string fname)
 	{
 		if (dim == 2)
 		{
-			for (int i = 0; i < points; i++)
+			for (int i = 0; i < points - 1; i++)
 			{
 				PAIR p = get_pair();
 				ofile << p.first << " " << p.second << "\n";
@@ -47,7 +47,7 @@ bool make_set(int points, int dim, std::string fname)
 		}
 		else
 		{
-			for (int i = 0; i < points; i++)
+			for (int i = 0; i < points - 1; i++)
 			{
 				TRIP t = get_trip();
 				ofile << std::get<0>(t) << " " << std::get<1>(t) << " " << std::get<2>(t) << "\n";
@@ -105,5 +105,8 @@ V_TRIP read_trips(std::string fname)
 
 //sort PAIR vector    sort(vector.begin(), vector.end(), SortPair);
 bool SortPair(PAIR i, PAIR j) { return (i.first < j.first); }
+bool SortPairY(PAIR i, PAIR j) { return (i.second < j.second); }
 //sort TRIP vector    sort(vector.begin(), vector.end(), SortTRIP);
 bool SortTrip(TRIP i, TRIP j) { return (std::get<0>(i) < std::get<0>(j)); }
+bool SortTripY(TRIP i, TRIP j) { return (std::get<1>(i) < std::get<1>(j)); }
+bool SortTripZ(TRIP i, TRIP j) { return (std::get<2>(i) < std::get<2>(j)); }

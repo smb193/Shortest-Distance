@@ -19,6 +19,9 @@ V_PAIR read_pairs(std::string fname);
 V_TRIP read_trips(std::string fname);
 
 bool SortPair(PAIR, PAIR);
+bool SortPairY(PAIR, PAIR);
 bool SortTrip(TRIP, TRIP);
+bool SortTripY(TRIP, TRIP);
+bool SortTripZ(TRIP, TRIP);
 
 #endif
