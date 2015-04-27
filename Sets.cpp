@@ -39,7 +39,7 @@ bool make_set(int points, int dim, std::string fname)
 	{
 		if (dim == 2)
 		{
-			for (int i = 0; i < points - 1; i++)
+			for (int i = 0; i < points; i++)
 			{
 				PAIR p = get_pair();
 				ofile << p.first << " " << p.second << "\n";
@@ -47,10 +47,10 @@ bool make_set(int points, int dim, std::string fname)
 		}
 		else
 		{
-			for (int i = 0; i < points - 1; i++)
+			for (int i = 0; i < points; i++)
 			{
 				TRIP t = get_trip();
-				ofile << std::get<0>(t) << " " << std::get<1>(t) << " " << std::get<2>(t) << "\n";
+				ofile << std::get<0>(t) << " " << std::get<1>(t) << " " << std::get<2>(t);
 			}
 		}
 		ofile.close();
@@ -70,11 +70,13 @@ V_PAIR read_pairs(std::string fname)
 	if (ifile.is_open())
 	{
 		int first, second;
+		ifile >> first >> second;
+
 		while (!ifile.eof())
 		{
-			ifile >> first >> second;
 			PAIR p(first, second);
 			v.push_back(p);
+			ifile >> first >> second;
 		}
 		ifile.close();
 	}

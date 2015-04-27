@@ -10,4 +10,6 @@ double pt_distance(TRIP first, TRIP second);
 std::pair<PAIR, PAIR> ClosePoints(V_PAIR set);
 std::pair<TRIP, TRIP> ClosePoints(V_TRIP set);
 
+std::pair<PAIR, PAIR> DividePoints(V_PAIR set);
+
 #endif
