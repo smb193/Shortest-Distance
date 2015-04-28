@@ -4,7 +4,7 @@
 #include <iostream>
 #include <random>
 #include <string>
-
+#include <algorithm>
 
 PAIR get_pair()
 {
@@ -82,6 +82,7 @@ V_PAIR read_pairs(std::string fname)
 	}
 	else
 		std::cerr << "Unable to open file.\n";
+	std::sort(v.begin(), v.end(), SortPair);
 	return v;
 }
 
@@ -102,6 +103,7 @@ V_TRIP read_trips(std::string fname)
 	}
 	else
 		std::cerr << "Unable to open file.\n";
+	std::sort(v.begin(), v.end(), SortTrip);
 	return v;
 }
 
