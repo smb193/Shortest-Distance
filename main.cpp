@@ -8,35 +8,69 @@
 int main(int argc, char* argv[])
 {
 	srand(12309);
-	make_set(20000, 2, "test");
-	V_PAIR v = read_pairs("test.txt");
-	V_PAIR v2 = read_pairs("test.txt");
 
-	std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
-	std::pair<PAIR, PAIR> closest = ClosePoints(v);
-	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+	/*
+		{
+		make_set(20000, 2, "test");
+		V_PAIR v = read_pairs("test.txt");
+		V_PAIR v2 = read_pairs("test.txt");
 
-	auto time = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t).count();
+		std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
+		std::pair<PAIR, PAIR> closest = ClosePoints(v);
+		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 
-	t = std::chrono::high_resolution_clock::now();
-	std::pair<PAIR, PAIR> closest2 = DividePoints(v2);
-	t2 = std::chrono::high_resolution_clock::now();
+		auto time = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t).count();
 
-	auto time2 = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t).count();
+		t = std::chrono::high_resolution_clock::now();
+		std::pair<PAIR, PAIR> closest2 = DividePoints(v2);
+		t2 = std::chrono::high_resolution_clock::now();
 
-	std::cout << "closest points:  " << closest.first.first << "," << closest.first.second
+		auto time2 = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t).count();
+
+		std::cout << "closest points:  " << closest.first.first << "," << closest.first.second
 		<< "   " << closest.second.first << "," << closest.second.second << std::endl;
-	std::cout << "distance=" << pt_distance(closest.first, closest.second) << std::endl;
+		std::cout << "distance=" << pt_distance(closest.first, closest.second) << std::endl;
 
-	std::cout << "Took " << time << " milliseconds.\n";
-	std::cout << std::endl;
+		std::cout << "Took " << time << " milliseconds.\n";
+		std::cout << std::endl;
 
-	std::cout << "closest points:  " << closest2.first.first << "," << closest2.first.second
+		std::cout << "closest points:  " << closest2.first.first << "," << closest2.first.second
 		<< "   " << closest2.second.first << "," << closest2.second.second << std::endl;
-	std::cout << "distance=" << pt_distance(closest2.first, closest2.second) << std::endl;
-	std::cout << "Took " << time2 << " milliseconds.\n";
-	std::cout << std::endl;
+		std::cout << "distance=" << pt_distance(closest2.first, closest2.second) << std::endl;
+		std::cout << "Took " << time2 << " milliseconds.\n";
+		std::cout << std::endl;
+		}
+		*/
+	{
+		make_set(20000, 3, "test3");
+		V_TRIP v = read_trips("test3.txt");
+		V_TRIP v2 = read_trips("test3.txt");
 
+		std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
+		std::pair<TRIP, TRIP> closest = ClosePoints(v);
+		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+
+		auto time = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t).count();
+
+		t = std::chrono::high_resolution_clock::now();
+		std::pair<TRIP, TRIP> closest2 = DividePoints(v2);
+		t2 = std::chrono::high_resolution_clock::now();
+
+		auto time2 = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t).count();
+
+		std::cout << "closest points:  " << std::get<0>(closest.first) << "," << std::get<1>(closest.first) << "," << std::get<2>(closest.first)
+			<< "   " << std::get<0>(closest.second) << "," << std::get<1>(closest.second) << "," << std::get<2>(closest.second) << std::endl;
+		std::cout << "distance=" << pt_distance(closest.first, closest.second) << std::endl;
+
+		std::cout << "Took " << time << " milliseconds.\n";
+		std::cout << std::endl;
+
+		std::cout << "closest points:  " << std::get<0>(closest2.first) << "," << std::get<1>(closest2.first) << "," << std::get<2>(closest2.first)
+			<< "   " << std::get<0>(closest2.second) << "," << std::get<1>(closest2.second) << "," << std::get<2>(closest2.second) << std::endl;
+		std::cout << "distance=" << pt_distance(closest2.first, closest2.second) << std::endl;
+		std::cout << "Took " << time2 << " milliseconds.\n";
+		std::cout << std::endl;
+	}
 	std::cin >> argc;
 
 	/*{

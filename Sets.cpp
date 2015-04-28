@@ -50,7 +50,7 @@ bool make_set(int points, int dim, std::string fname)
 			for (int i = 0; i < points; i++)
 			{
 				TRIP t = get_trip();
-				ofile << std::get<0>(t) << " " << std::get<1>(t) << " " << std::get<2>(t);
+				ofile << std::get<0>(t) << " " << std::get<1>(t) << " " << std::get<2>(t) << "\n";
 			}
 		}
 		ofile.close();
@@ -93,11 +93,12 @@ V_TRIP read_trips(std::string fname)
 	if (ifile.is_open())
 	{
 		int first, second, third;
+		ifile >> first >> second >> third;
 		while (!ifile.eof())
 		{
-			ifile >> first >> second >> third;
 			TRIP t(first, second, third);
 			v.push_back(t);
+			ifile >> first >> second >> third;
 		}
 		ifile.close();
 	}

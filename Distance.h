@@ -12,6 +12,8 @@ std::pair<PAIR, PAIR> ClosePoints(V_PAIR set);
 std::pair<TRIP, TRIP> ClosePoints(V_TRIP set);
 
 std::pair<PAIR, PAIR> DividePoints(V_PAIR& set);
+std::pair<TRIP, TRIP> DividePoints(V_TRIP& set);
+
 void display(V_PAIR);
 void display(V_TRIP);
 

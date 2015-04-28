@@ -43,24 +43,21 @@ std::pair<TRIP, TRIP> ClosePoints(V_TRIP set)
 	double close = pt_distance(set[0], set[1]);
 	if (set.size() == 2)
 		return points;
-	for (int i = 0; i < set.size(); ++i)
+	for (int i = 0; i < set.size() - 1; ++i)
 	{
-		if (i != set.size() - 1){
-			for (int j = i + 1; j < set.size(); ++j)
+		for (int j = i + 1; j < set.size(); ++j)
+		{
+//			if ((std::get<0>(set[i]) - std::get<0>(set[j])) > close)
+//			break;
+			double dist = pt_distance(set[i], set[j]);
+			if (dist < close && dist != 0)
 			{
-//				if ((std::get<0>(set[i]) - std::get<0>(set[j])) > close)
-//					break;
-				double dist = pt_distance(set[i], set[j]);
-				if (dist < close && dist != 0)
-				{
-					close = dist;
-					points.first = set[i];
-					points.second = set[j];
-				}
+				close = dist;
+				points.first = set[i];
+				points.second = set[j];
 			}
 		}
 	}
-
 	return points;
 }
 
@@ -108,6 +105,47 @@ std::pair<PAIR, PAIR> DividePoints(V_PAIR& set)
 	for (int i = 0; i < strip.size() - 1; ++i)
 		for (int j = i + 1; j < strip.size() &&
 			((strip[j].second - strip[i].second) < strip_dist); ++j)
+		{
+			double temp_dist = pt_distance(strip[i], strip[j]);
+			if (temp_dist < min_dist)
+			{
+				min_dist = temp_dist;
+				min_pair = std::make_pair(strip[i], strip[j]);
+			}
+		}
+	return min_pair;
+}
+
+std::pair<TRIP, TRIP> DividePoints(V_TRIP& set)
+{
+	if (set.size() <= 3)
+		return ClosePoints(set);
+
+	int size = set.size();
+	int middle = std::get<0>(set[size / 2]);
+	V_TRIP left_set, right_set;
+	std::copy(set.begin(), set.begin() + (size / 2), std::back_inserter(left_set));
+	std::copy(set.begin() + (size / 2), set.end(), std::back_inserter(right_set));
+
+	std::pair<TRIP, TRIP> left_pair = DividePoints(left_set);
+	std::pair<TRIP, TRIP> right_pair = DividePoints(right_set);
+	double left_dist = pt_distance(left_pair.first, left_pair.second);
+	double right_dist = pt_distance(right_pair.first, right_pair.second);
+
+	std::pair<TRIP, TRIP> min_pair = (left_dist < right_dist) ? left_pair : right_pair;
+	double strip_dist = std::fmin(left_dist, right_dist);
+
+	std::sort(set.begin(), set.end(), SortTripY);
+
+	V_TRIP strip;
+	std::copy_if(set.begin(), set.end(), std::back_inserter(strip), [&middle, &strip_dist](const TRIP& t)
+	{ return abs(middle - std::get<0>(t)) < strip_dist; });
+
+	double min_dist = strip_dist;
+
+	for (int i = 0; i < strip.size() - 1; ++i)
+		for (int j = i + 1; j < strip.size() &&
+			((std::get<1>(strip[j]) - std::get<1>(strip[i])) < strip_dist); ++j)
 		{
 			double temp_dist = pt_distance(strip[i], strip[j]);
 			if (temp_dist < min_dist)
